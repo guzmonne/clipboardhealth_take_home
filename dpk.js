@@ -1,27 +1,10 @@
 const crypto = require("crypto");
 
-/**
- * Default partition key used when an event isn't provided.
- */
 const TRIVIAL_PARTITION_KEY = "0";
-/**
- * Maximum length for the partition key.
- */
 const MAX_PARTITION_KEY_LENGTH = 256;
 
 /**
  * Returns a deterministic partition key for the provided event.
- *
- * @example
- * ```javascript
- * deterministicPartitionKey();
- * // "0"
- * deterministicPartitionKey({ partitionKey: 1 });
- * // "1"
- * deterministicPartitionKey({ partitionKey: 'example' });
- * // "<hash>"
- * ```
- *
  * @param {any} event Event from which to determine the `partitionKey`
  */
 exports.deterministicPartitionKey = (event) => {

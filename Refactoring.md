@@ -9,3 +9,23 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
+
+I moved the constants outside the function, since they don't have to be recreated on each function
+invocation. They are both configured as `const` variables with primitive values, so we know that they
+won't be changed at runtime. I didn't add any `jsdoc` comments for them since their name is sufficient
+to express their intent.
+
+I added some `jsdoc` comments to explain the intent of the function and what its arguments
+represent. This is sometimes hard to maintain so I try to keep it short. I found it very helpful when
+working because they are picked up by most JavaScript tools and improve the development workflow.
+
+I moved the argument validation to the top of the function, and added an immediate return for when
+the event is `undefined`, empty (`''`), `null`, or `0`. The rest of the function can continue knowing
+that the `event` is defined.
+
+I removed the nested `if` statements to make the function easy to read (IMO), since you can follow
+the logic from top to bottom without additional branches. The last two conditions I left as they
+were since they are independent.
+
+I didn't reduce or removed any other part because I think that it's intent is clear and its easy to
+pick up what is doing, if anyone else (or me from the future) has to refactor it at any point in time.
